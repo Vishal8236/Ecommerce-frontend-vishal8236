@@ -1,0 +1,18 @@
+.nav-root{
+	align-items: center;
+	justify-content: space-around;
+}
+
+.nav-bg{
+	background-color: #ba86ee;
+	color: white;
+}
+
+.active{
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #B176EC;
+}
+.nav-link{
+	font-size:  1.3rem;
+}

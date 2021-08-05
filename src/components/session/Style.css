@@ -1,0 +1,38 @@
+.vertical-center {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+	display: flex;
+	align-items: center;
+}
+input[name="email"]{
+	border: none;
+	outline: none;
+	border-bottom: 1px solid rgb(167, 165, 165);
+}
+input[name="password"]{
+	border: none;
+	border-bottom: 1px solid rgb(167, 165, 165);
+	outline: none;
+}
+input[name="loginbtn"]{
+	background-color: #B176EC;
+	color: white;
+	border: none;
+	padding: 4px 20px;
+	width: 30%;
+}
+.singup-op{
+	width: 300px;
+}
+
+.signup-active{
+	border: 1px solid rgb(195, 195, 195);
+	transform: scale(1.1);
+	transition: 0.4s linear;
+	box-shadow:1px -0px 10px rgb(197, 196, 193);
+}
+.signup-active > div > svg{
+	width: 90px;
+	height: 90px;
+}

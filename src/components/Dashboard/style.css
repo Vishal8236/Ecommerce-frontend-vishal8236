@@ -1,0 +1,29 @@
+.brand-hw{
+	height: 100px;
+	width: 150px;
+}
+
+.brand-root{
+	justify-content: space-around;
+}
+
+.brand-option:hover{
+	transform: scale(1.1);
+	transition: 0.5s;
+	transition-timing-function: linear;
+	box-shadow:5px -0px 20px rgb(197, 196, 193);
+}
+.parent{
+	display: grid;
+	grid-template-columns: repeat(6, 0fr);
+	grid-template-rows: repeat(6, 0fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+.parent >div{
+	width: 279px;
+}
+
+.coursor-pointer{
+	cursor: pointer;
+}
