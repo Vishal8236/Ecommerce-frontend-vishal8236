@@ -18,7 +18,6 @@ function App() {
 				headers: {"Authenticate" : localStorage.token}
 			})
 			.then(res => {
-        console.log(res)
 				setuser(res.data)
 			})
 		}	
