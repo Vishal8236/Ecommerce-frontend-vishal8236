@@ -15,8 +15,16 @@ export default class Login extends Component {
 	componentDidUpdate(){
 		if(this.state.user)
 		{
-			window.location = "/dashboard"
-			// console.log(this.state.user)
+			console.log(this.state.user['work_roles_id'])
+			if(this.state.user['work_roles_id'] === 1){
+				window.location = "/dashboard"
+			}
+			else if(this.state.user['work_roles_id'] === 2){
+				window.location = "/seller_dashboard"
+			}
+			else if(this.state.user['work_roles_id'] === 3){
+				window.location = "/dist_dashboard"
+			}
 		}
 	}
 	submitForm = () =>{

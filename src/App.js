@@ -8,6 +8,8 @@ import axios from 'axios';
 import Dashboard from './components/Dashboard/Dashboard';
 import Navigation from './components/Navigation/Navigation';
 import Signup from './components/session/Signup';
+import SellerDashboard from './components/Seller/SellerDashboard';
+import DistDashboard from './components/Distributer/DistDashboard';
 
 function App() {
   const [user, setuser] = useState([])
@@ -39,6 +41,12 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/seller_dashboard">
+            <SellerDashboard />
+          </Route>
+          <Route path="/dist_dashboard">
+            <DistDashboard />
           </Route>
         </Switch>
       </Router>
