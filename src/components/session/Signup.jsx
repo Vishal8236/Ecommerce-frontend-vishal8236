@@ -1,14 +1,18 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import * as Icon from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 export default class Signup extends Component {
 	constructor(){
 		super();
 		this.state = {
+			user: '',
+			error: '',
 			f_name: '',
 			l_name: '',
 			email: '',
+			phone: '',
 			password: undefined,
 			c_password: undefined,
 			role: 'user',
@@ -19,6 +23,12 @@ export default class Signup extends Component {
 		this.sellerDiv = React.createRef();
 		this.userDiv = React.createRef();
 		this.distributeDiv = React.createRef();
+	}
+	componentDidUpdate(){
+		if(this.state.user)
+		{
+			window.location = "/dashboard"
+		}
 	}
 	selectRole = (e) =>{
 		let sellerEl = this.sellerDiv.current;
@@ -54,16 +64,29 @@ export default class Signup extends Component {
 		let full_name = this.state.f_name.concat(this.state.l_name);
 		axios.post("http://localhost:3000/signup", {
 			headers: {"content-type":"application/json"},
-			user:{ name: full_name, email: this.state.email, password: this.state.password, role: this.state.role }
+			user:{ name: full_name, email: this.state.email, phone: this.state.phone ,password: this.state.password, role: this.state.role }
 		})
 		.then((res)=>{
-			localStorage.setItem("user", res.data.user)
-			console.log(res)
+			localStorage.setItem("token", res.data.token)
+			this.setState({error: res.data.error})
+			this.setState({user: res.data.user})
+			if(res.data.error)
+			{
+				this.setState({
+					f_name: '',
+					l_name: '',
+					email: '',
+					phone: '',
+					password: '',
+					c_password: '',
+					role: 'user',
+					form_valid: true
+				})
+			}
 		})
 		.catch(err => console.log(err))
 	}
 	check_confirm_password = () =>{
-		console.log(this.state.password + " - " +this.state.c_password)
 		if (this.state.password == this.state.c_password) {
 			this.setState({form_valid : false})
 		}
@@ -76,7 +99,12 @@ export default class Signup extends Component {
 			<div>
 				<div className="container shadow mt-5">
 					<div className="py-5">
-						<div className="text-primary h3">Signup</div>
+						{ this.state.error &&
+							<div class="alert alert-warning" role="alert">
+								{this.state.error}
+							</div>
+						}
+						<div className="text-primary h1">SIGN UP</div>
 						<div className="mt-4">
 							<div className="row">
 								<div className="col-6">
@@ -86,8 +114,13 @@ export default class Signup extends Component {
 									<input type="text" className="form-control" name="" id="l_name" placeholder="last name" value={this.state.l_name} onChange={(e)=>{this.setState({l_name:e.target.value})}} />
 								</div>
 							</div>
-							<div className="mt-4">
-								<input type="email" name="" id="email" className="form-control" placeholder="enter email" value={this.state.email} onChange={(e)=>{this.setState({email:e.target.value})}} />
+							<div className="mt-4 row">
+								<div className="col-6">
+									<input type="email" name="" id="email" className="form-control" placeholder="enter email" value={this.state.email} onChange={(e)=>{this.setState({email:e.target.value})}} />
+								</div>
+								<div className="col-6">
+									<input type="phone" name="" id="phone" className="form-control" placeholder="phone number" value={this.state.phone} onChange={(e)=>{this.setState({phone:e.target.value})}} />
+								</div>
 							</div>
 							<div className="mt-4 row">
 								<div className="col-6">
@@ -124,8 +157,13 @@ export default class Signup extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="mt-5">
-								<input type="submit" value="Submit" className="btn btn-primary btn-sm" onClick={()=>this.handleSubmit()} disabled={this.state.form_valid} />
+							<div className="mt-5 row">
+								<div className="col-sm-6">
+									<Link to="/dashboard" className="btn btn-danger btn-sm w-75">cancel</Link>
+								</div>
+								<div className="col-sm-6">
+									<input type="submit" value="Submit" className="btn btn-primary btn-sm w-75" onClick={()=>this.handleSubmit()} disabled={this.state.form_valid} />
+								</div>
 							</div>
 						</div>
 					</div>
