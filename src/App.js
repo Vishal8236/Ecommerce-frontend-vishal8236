@@ -26,7 +26,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
+    <div className="App1">
       <Router>
         {user.user ?  <Navigation user={user.user['name']} /> : <Navigation user="user" /> }
         <Switch>
