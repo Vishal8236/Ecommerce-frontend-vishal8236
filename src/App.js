@@ -44,7 +44,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/seller_dashboard">
-            <SellerDashboard />
+            {user.user ?  <SellerDashboard user={user.user['id']} /> : <SellerDashboard user="2" /> }
           </Route>
           <Route path="/seller/:shop_id">
             <ShowSellerShop />
