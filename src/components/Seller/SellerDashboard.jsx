@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 export default class SellerDashboard extends Component {
     constructor()
 	{
@@ -16,7 +17,6 @@ export default class SellerDashboard extends Component {
 			this.setState({
 				shop_info : res.data.shops
 			})
-			console.log("shop data = ",this.state.shop_info)
 		})
 	}
     render() {
@@ -33,8 +33,11 @@ export default class SellerDashboard extends Component {
                         }
                         {this.state.shop_info &&
                             this.state.shop_info.map((data) => (
-                                <div className="mb-3 text-left">
-                                    <div className="text-primary">{data['name']}</div>
+                                <div className="mb-3 text-left" id={data.id}>
+                                    <Link className="text-primary" to={{
+                                        pathname: `/seller/${data['name']}`,
+                                        state: {shop: data}
+                                    }} >{data['name']}</Link>
                                 </div>
                             ))
                         }

@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from "react"
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router,Switch,Route,Link } from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import Login from './components/session/Login';
 import axios from 'axios';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -10,6 +10,7 @@ import Navigation from './components/Navigation/Navigation';
 import Signup from './components/session/Signup';
 import SellerDashboard from './components/Seller/SellerDashboard';
 import DistDashboard from './components/Distributer/DistDashboard';
+import ShowSellerShop from './components/Seller/ShowSellerShop';
 
 function App() {
   const [user, setuser] = useState([])
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/seller_dashboard">
             <SellerDashboard />
+          </Route>
+          <Route path="/seller/:shop_id">
+            <ShowSellerShop />
           </Route>
           <Route path="/dist_dashboard">
             <DistDashboard />
