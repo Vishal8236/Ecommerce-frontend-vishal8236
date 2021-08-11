@@ -26,7 +26,10 @@ export default function ShowSellerShop() {
                             <img src={data['product_image']} alt=""  height="147px" width="73px" className="img" />
                         </div>  
                         <div className="text-success mt-3">
-                            <span>{data['product_name']}</span>
+                            <span className="h5">{data['product_name']}</span>
+                        </div>
+                        <div className="mt-2">
+                            <span>${data['price']}</span>
                         </div>
                     </div>
                 ))}

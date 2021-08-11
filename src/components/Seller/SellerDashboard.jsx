@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../Seller/style.css';
 import * as Icon from 'react-bootstrap-icons';
-const cors = require('cors');
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js'
 
 export default class SellerDashboard extends Component {
     constructor(props)
@@ -12,7 +14,8 @@ export default class SellerDashboard extends Component {
 		this.state= {
 			shop_info: [],
             shop_name: '',
-            shop_create_res: undefined
+            shop_create_res: undefined,
+            edit_shop_name: undefined
 		};
         this.createShop = this.createShop.bind(this);
         this.offHover = this.offHover.bind(this);
@@ -44,7 +47,6 @@ export default class SellerDashboard extends Component {
                 shop_info : res.data.shops,
                 shop_create_res: res.data.message
             })
-            console.log(res.data.shops)
         })
         .catch(err =>{
             console.log(err);
@@ -57,10 +59,12 @@ export default class SellerDashboard extends Component {
         document.getElementById(id_name).classList.remove("shop-shadow");
     }
     delete_shop = (shop_name) =>{
-        console.log(shop_name);
         axios.delete(`http://localhost:3000/seller/delete_shop/${shop_name}`)
         .then((res)=>{
-            console.log(res.data.shops)
+            this.setState({
+                shop_info : res.data.shops,
+                shop_create_res: res.data.message
+            })
         })
     }
     render() {
@@ -87,7 +91,7 @@ export default class SellerDashboard extends Component {
                                             </div>
                                             <div className="col-3 d-flex justify-content-end">
                                                 <div className="mx-2" title="Edit shop">
-                                                    <Icon.PencilSquare color="" size={25} className="coursor-pointer"  />
+                                                    <Icon.PencilSquare data-bs-toggle="modal" data-bs-target="#exampleModal" color="" size={25} className="coursor-pointer" onClick={(e)=>{this.setState({edit_shop_name: data['name']})}}  />
                                                 </div>
                                                 <div className="mx-2" title="Delete Shop" >
                                                     <Icon.Trash color="red" size={25} className="coursor-pointer" onClick={()=>this.delete_shop(data['name'])}  />
@@ -119,6 +123,27 @@ export default class SellerDashboard extends Component {
                                     <li>Minimum 20 characters.</li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                {/* shop edit Modal */}
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Edit Shop Name</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body my-4">
+                            <div className="text-muted">
+                                Current Shop Name :- <strong>{this.state.edit_shop_name}</strong>
+                            </div>
+                            <input type="text" name="" className="form-control mt-3" id="" placeholder="enter new name here..."  />
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary btn-sm">Save</button>
+                        </div>
                         </div>
                     </div>
                 </div>
