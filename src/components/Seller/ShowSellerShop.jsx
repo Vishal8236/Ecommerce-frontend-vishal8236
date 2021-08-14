@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {React, useState, useEffect} from 'react'
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function ShowSellerShop() {
     const { state } = useLocation();
@@ -11,13 +11,18 @@ export default function ShowSellerShop() {
         })
         .then((res) => {
             setproduct(res.data.product);
-            console.log(product);
-            console.log(res.data.product);
         })
+        console.log(state)
     }, [])
     return (
         <div className="text-center mt-5 container">
-            <h2 className="text-muted">{state.shop.name}</h2>            
+            <div className="d-flex justify-content-between align-items-center">
+                <h2 className="text-muted">{state.shop.name}</h2> 
+                <Link className="btn btn-sm btn-primary" to={{
+                    pathname : `seller/${state.shop.name}/new_product`,
+                    // state: {shop: state}
+                }} >Add New Product</Link>
+            </div>
             <hr className="text-muted" />   
             <div>
                 {product.map((data)=>(

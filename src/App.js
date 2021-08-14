@@ -11,6 +11,7 @@ import Signup from './components/session/Signup';
 import SellerDashboard from './components/Seller/SellerDashboard';
 import DistDashboard from './components/Distributer/DistDashboard';
 import ShowSellerShop from './components/Seller/ShowSellerShop';
+import NewProduct from './components/Seller/NewProduct';
 
 function App() {
   const [user, setuser] = useState([])
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path="/seller/:shop_id">
             <ShowSellerShop />
+          </Route>
+          <Route path="/seller/:shop_name/new_product">
+            <NewProduct />
           </Route>
           <Route path="/dist_dashboard">
             <DistDashboard />
