@@ -1,25 +1,25 @@
 import axios from 'axios';
 import {React, useState, useEffect} from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export default function ShowSellerShop() {
-    const { state } = useLocation();
+    const { shop_id } = useParams();
     const [product, setproduct] = useState([])
     useEffect(() => {
-        axios.post(`http://localhost:3000/seller/${state.shop.id}/products`,{
-            shop_id : state.shop.id
+        axios.post(`http://localhost:3000/seller/${shop_id}/products`,{
+            shop_id : shop_id
         })
         .then((res) => {
             setproduct(res.data.product);
         })
-        console.log(state)
+        console.log(shop_id)
     }, [])
     return (
         <div className="text-center mt-5 container">
             <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-muted">{state.shop.name}</h2> 
+                <h2 className="text-muted">{shop_id}</h2> 
                 <Link className="btn btn-sm btn-primary" to={{
-                    pathname : `seller/${state.shop.name}/new_product`,
+                    pathname : `${shop_id}/new_product`,
                     // state: {shop: state}
                 }} >Add New Product</Link>
             </div>

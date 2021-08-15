@@ -12,6 +12,7 @@ import SellerDashboard from './components/Seller/SellerDashboard';
 import DistDashboard from './components/Distributer/DistDashboard';
 import ShowSellerShop from './components/Seller/ShowSellerShop';
 import NewProduct from './components/Seller/NewProduct';
+import SellerRoutes from './components/Seller/SellerRoutes';
 
 function App() {
   const [user, setuser] = useState([])
@@ -44,15 +45,11 @@ function App() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/seller_dashboard">
-            {user.user ?  <SellerDashboard user={user.user['id']} /> : <SellerDashboard user="2" /> }
+          <Route path="/seller">
+            <SellerRoutes />
+            {/* {user.user ?  <SellerDashboard user={user.user['id']} /> : <SellerDashboard user="2" /> } */}
           </Route>
-          <Route path="/seller/:shop_id">
-            <ShowSellerShop />
-          </Route>
-          <Route path="/seller/:shop_name/new_product">
-            <NewProduct />
-          </Route>
+          
           <Route path="/dist_dashboard">
             <DistDashboard />
           </Route>

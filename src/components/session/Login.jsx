@@ -20,7 +20,7 @@ export default class Login extends Component {
 				window.location = "/dashboard"
 			}
 			else if(this.state.user['work_roles_id'] === 2){
-				window.location = "/seller_dashboard"
+				window.location = "/seller"
 			}
 			else if(this.state.user['work_roles_id'] === 3){
 				window.location = "/dist_dashboard"
