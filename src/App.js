@@ -8,10 +8,7 @@ import axios from 'axios';
 import Dashboard from './components/Dashboard/Dashboard';
 import Navigation from './components/Navigation/Navigation';
 import Signup from './components/session/Signup';
-import SellerDashboard from './components/Seller/SellerDashboard';
 import DistDashboard from './components/Distributer/DistDashboard';
-import ShowSellerShop from './components/Seller/ShowSellerShop';
-import NewProduct from './components/Seller/NewProduct';
 import SellerRoutes from './components/Seller/SellerRoutes';
 
 function App() {
@@ -46,8 +43,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/seller">
-            <SellerRoutes />
-            {/* {user.user ?  <SellerDashboard user={user.user['id']} /> : <SellerDashboard user="2" /> } */}
+            {user.user ?  <SellerRoutes user={user.user['id']} /> : <SellerRoutes user="2" /> }
           </Route>
           
           <Route path="/dist_dashboard">

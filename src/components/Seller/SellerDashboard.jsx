@@ -24,9 +24,7 @@ export default class SellerDashboard extends Component {
 	}
     
 	componentDidMount(){
-		axios.post('http://localhost:3000/seller/all_shop',{
-            user_id: "2"
-        })
+		axios.get(`http://localhost:3000/seller/shops?user_id=${"2"}`)
 		.then(res => {
 			this.setState({
 				shop_info : res.data.shops
@@ -89,7 +87,7 @@ export default class SellerDashboard extends Component {
                                         <div className="col-11 row">
                                             <div className="col-8">
                                                 <Link className="text-primary shop-name" to={{
-                                                    pathname: `/seller/${data['name']}`,
+                                                    pathname: `/seller/shops/${data['name']}`,
                                                     state: {shop: data}
                                                 }} >{data['name']}</Link>
                                             </div>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {React, useState, useEffect} from 'react'
 import { Link, useLocation, useParams } from "react-router-dom";
 
-export default function ShowSellerShop() {
+export default function ShowShopProduct() {
     const { shop_id } = useParams();
     const [product, setproduct] = useState([])
     useEffect(() => {
