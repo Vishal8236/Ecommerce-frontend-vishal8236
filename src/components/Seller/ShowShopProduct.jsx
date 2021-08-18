@@ -20,7 +20,7 @@ export default function ShowShopProduct() {
                 <h2 className="text-muted">{shop_id}</h2> 
                 <Link className="btn btn-sm btn-primary" to={{
                     pathname : `${shop_id}/new_product`,
-                    // state: {shop: state}
+                    state: {shop_id: shop_id}
                 }} >Add New Product</Link>
             </div>
             <hr className="text-muted" />   
