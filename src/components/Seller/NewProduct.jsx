@@ -41,11 +41,11 @@ function NewProduct() {
                     <input onChange={formik.handleChange} value={formik.values.product_price} type="text" name="product_price" id="" className="form-control" />
 
                     <br />
-                    <label htmlFor="ProductPrice">Enter Product Image</label>
+                    <label htmlFor="ProductImage">Enter Product Image</label>
                     <input onChange={formik.handleChange} value={formik.values.product_image} type="text" name="product_image" id="" className="form-control" />
 
                     <br />
-                    <label htmlFor="ProductPrice">Enter Product Description</label>
+                    <label htmlFor="ProductDescription">Enter Product Description</label>
                     <input onChange={formik.handleChange} value={formik.values.product_description} type="text" name="product_description" id="" className="form-control" />
 
                     <br />

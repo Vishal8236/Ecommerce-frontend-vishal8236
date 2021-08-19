@@ -75,7 +75,7 @@ export default class SellerDashboard extends Component {
                 <div className="row mt-5">
                     <div className="col-8">
                         <div className="px-1 py-4 mx-5">
-                            {this.state.shop_info.length == 0 &&
+                            {this.state.shop_info.length === 0 &&
                                 <div className="text-danger">No shop is created till now.</div>
                             }
                             {this.state.shop_info &&

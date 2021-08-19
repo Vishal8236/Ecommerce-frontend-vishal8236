@@ -6,13 +6,13 @@ export default function ShowShopProduct() {
     const { shop_id } = useParams();
     const [product, setproduct] = useState([])
     useEffect(() => {
-        axios.post(`http://localhost:3000/seller/${shop_id}/products`,{
-            shop_id : shop_id
-        })
+        axios.get(`http://localhost:3000/seller/shops/${shop_id}/products?shop_id=${shop_id}`)
         .then((res) => {
-            setproduct(res.data.product);
+            setproduct(res.data.products);
         })
-        console.log(shop_id)
+        .catch((err)=>{
+            console.log(err);
+        })
     }, [])
     return (
         <div className="text-center mt-5 container">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import BrandNav from './BrandNav';
 import '../Dashboard/style.css';
 import ItemsCategory from './ItemsCategory';
