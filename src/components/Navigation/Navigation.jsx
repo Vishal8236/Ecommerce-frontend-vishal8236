@@ -1,7 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { GoogleLogout } from 'react-google-login';
+import { Link, Redirect } from 'react-router-dom';
 import './style.css';
 function Navigation(props) {
+	const onLogout = () =>{
+		localStorage.removeItem("token");
+		<Redirect push to="/login" />
+	}
 	return (
 		<div className="w-100 shadow-lg nav-bg" style={{padding: "2px 0px"}}>
 			<div className="d-flex nav-root eco-container">
@@ -28,6 +33,13 @@ function Navigation(props) {
 					</div>
 					<div className="px-4">
 						<Link to="/cart"><i className="fa fa-shopping-cart text-white" style={{fontSize: '35px'}}></i></Link>
+					</div>
+					<div>
+						{localStorage.token ? 
+							<button onClick={()=>onLogout()} className="btn btn-light">Logout</button>
+							: 
+							<Link to="/login" className="btn btn-light" >Login</Link> 
+						}
 					</div>
 				</div>
 			</div>

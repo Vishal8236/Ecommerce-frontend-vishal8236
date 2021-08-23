@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from "react"
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route, Redirect } from "react-router-dom";
 import Login from './components/session/Login';
 import axios from 'axios';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -11,7 +11,7 @@ import Signup from './components/session/Signup';
 import DistDashboard from './components/Distributer/DistDashboard';
 import SellerRoutes from './components/Seller/SellerRoutes';
 
-function App() {
+function App(props) {
   const [user, setuser] = useState([])
   useEffect(() => {
     if(localStorage.getItem("token"))
@@ -34,7 +34,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            {localStorage.token ? <Redirect push to="/" />: <Login /> }
           </Route>
           <Route path="/signup">
             <Signup />
