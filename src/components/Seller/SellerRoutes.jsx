@@ -4,6 +4,7 @@ import SellerDashboard from './SellerDashboard'
 import ShowShopProduct from './ShowShopProduct';
 import NewProduct from './NewProduct';
 import SellerHome from './SellerHome';
+import ProductDescrption from './ProductDescrption';
 
 function SellerRoutes(props) {
     const {path, url} = useRouteMatch()
@@ -22,6 +23,9 @@ function SellerRoutes(props) {
                 </Route>
                 <Route path={`${path}/shops/:shop_id/new_product`} exact>
                     <NewProduct />
+                </Route>
+                <Route path={`${path}/shops/:shop_id/products/:id`} exact>
+                    <ProductDescrption />
                 </Route>
             </Switch>
         </div>

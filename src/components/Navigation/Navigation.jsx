@@ -5,7 +5,7 @@ import './style.css';
 function Navigation(props) {
 	const onLogout = () =>{
 		localStorage.removeItem("token");
-		<Redirect push to="/login" />
+		window.location = "/login"
 	}
 	return (
 		<div className="w-100 shadow-lg nav-bg" style={{padding: "2px 0px"}}>

@@ -14,6 +14,10 @@ export default function ShowShopProduct() {
             console.log(err);
         })
     }, [])
+    const getFirstImage = (getData) =>{
+        const getImage = JSON.parse(getData);
+        return getImage[0];
+    }
     return (
         <div className="text-center mt-5 container">
             <div className="d-flex justify-content-between align-items-center">
@@ -28,13 +32,18 @@ export default function ShowShopProduct() {
                 {product.map((data)=>(
                     <div className="p-3 shadow-sm rounded col-3" key={data['id']}>
                         <div className="image-show">
-                            <img src={data['product_image']} alt=""  height="147px" width="73px" className="img" />
+                            <img src={getFirstImage(data['product_image'])} alt=""  height="157px" width="73px" className="img" />
                         </div>  
                         <div className="text-success mt-3">
                             <span className="h5">{data['product_name']}</span>
                         </div>
                         <div className="mt-2">
-                            <span>${data['price']}</span>
+                            <Link to={{
+                                pathname: `${shop_id}/products/${data['id']}`
+                            }}>More Details</Link>
+                        </div>
+                        <div className="bg-warning mt-2 py-1 rounded">
+                            <span>There is <strong>{data['avaliable']}</strong> in the stocks.</span>
                         </div>
                     </div>
                 ))}
