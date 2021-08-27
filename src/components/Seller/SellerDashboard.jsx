@@ -6,6 +6,7 @@ import * as Icon from 'react-bootstrap-icons';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js'
+import Banner from '../Shared_component/Banner';
 
 export default class SellerDashboard extends Component {
     constructor(props)
@@ -14,7 +15,7 @@ export default class SellerDashboard extends Component {
 		this.state= {
 			shop_info: [],
             shop_name: '',
-            shop_create_res: undefined,
+            shop_create_res: '',
             edit_shop_name: undefined
 		};
         this.createShop = this.createShop.bind(this);
@@ -61,7 +62,7 @@ export default class SellerDashboard extends Component {
         .then((res)=>{
             this.setState({
                 shop_info : res.data.shops,
-                shop_create_res: res.data.message
+                shop_create_res: res.data.msg,
             })
         })
     }
@@ -72,6 +73,9 @@ export default class SellerDashboard extends Component {
     render() {
         return (
             <div className="mt-5 mx-5">
+                {this.state.shop_create_res &&
+                    <Banner color="success" msg={this.state.shop_create_res} />
+                }
                 <div className="row mt-5">
                     <div className="col-8">
                         <div className="px-1 py-4 mx-5">

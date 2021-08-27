@@ -2,10 +2,12 @@ import {React, useState} from 'react'
 import {useFormik} from 'formik'
 import axios from 'axios'
 import { useParams } from "react-router-dom";
+import Banner from '../Shared_component/Banner';
 
 function NewProduct() {
     const { shop_id } = useParams();
     const [get_image_url, setget_image_url] = useState('')
+    const [showError, setshowError] = useState([])
     const formik = useFormik({
         initialValues:{
             product_image: [],
@@ -22,10 +24,21 @@ function NewProduct() {
                 data:{product_data: data} 
             })
             .then((res)=>{
-                console.log(res);
+                chackStatus(res);
+            })
+            .catch((err)=>{
+                console.log(err);
             })
         }
     })
+    const chackStatus = (res) =>{
+        if(res.status === 200 && res.data.success) 
+        {
+        
+        }else if(res.status === 200 && res.data.error){
+            setshowError(res.data.error)
+        }
+    }
     const store_image = () =>{
         if(formik.values.product_image.length <= 4)
         {
@@ -39,6 +52,9 @@ function NewProduct() {
     }
     return (
         <div className="container mt-5">
+            {showError.length != 0 &&
+                <Banner color="warning" msg={showError} />
+            }
             <div>
                 <div className="d-flex justify-content-between">
                     <input onChange={(e)=>setget_image_url(e.target.value)} type="text" value={get_image_url} name="product_image" id="" className="form-control w-75" placeholder="Put Product Image url........" />
