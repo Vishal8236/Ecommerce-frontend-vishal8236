@@ -1,19 +1,44 @@
 import axios from 'axios';
 import {React, useState, useEffect} from 'react'
 import { Link, useLocation, useParams } from "react-router-dom";
+import ProductsFilter from './ProductsFilter';
 
 export default function ShowShopProduct() {
+    //state use by this component
     const { shop_id } = useParams();
     const [product, setproduct] = useState([])
+    const [cloneProduct, setcloneProduct] = useState([])
+    // const [Filter_products, setFilter_products] = useState([])
+    const [brand_filter, setfilter] = useState([])
+
+    //api call for fetch all products on page load
     useEffect(() => {
         axios.get(`http://localhost:3000/seller/shops/${shop_id}/products?shop_id=${shop_id}`)
         .then((res) => {
             setproduct(res.data.products);
+            setcloneProduct(res.data.products);
         })
         .catch((err)=>{
             console.log(err);
         })
     }, [])
+
+    useEffect(() => {
+        if (brand_filter) {
+            var Fproduct = [];
+            for (let i = 0; i < brand_filter.length; i++) {
+                var temp = cloneProduct.filter((data)=>{
+                    return data["brand_name"] === brand_filter[i] 
+                });
+                Array.prototype.push.apply(Fproduct,temp);
+            }
+            setproduct(Fproduct)
+        }else{
+            setproduct(cloneProduct)
+        }
+    }, [brand_filter])
+
+    //get first image of product because there is 4 image of product
     const getFirstImage = (getData) =>{
         const getImage = JSON.parse(getData);
         return getImage[0];
@@ -26,6 +51,10 @@ export default function ShowShopProduct() {
                     pathname : `${shop_id}/new_product`,
                     state: {shop_id: shop_id}
                 }} >Add New Product</Link>
+            </div>
+            <hr className="text-muted" />   
+            <div>
+                <ProductsFilter filter_func={setfilter} filter_array={brand_filter}  />
             </div>
             <hr className="text-muted" />   
             <div>
