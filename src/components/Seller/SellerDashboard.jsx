@@ -3,9 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../Seller/style.css';
 import * as Icon from 'react-bootstrap-icons';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.min.js'
 import Banner from '../Shared_component/Banner';
 
 export default class SellerDashboard extends Component {
@@ -88,21 +85,34 @@ export default class SellerDashboard extends Component {
                                         <div className="col-1">
 										    <Icon.Shop color="royalblue" size={25} className="coursor-pointer" />
                                         </div>
-                                        <div className="col-11 row">
+                                        <div className="col-11 row align-items-center">
                                             <div className="col-8">
-                                                <Link className="text-primary shop-name" to={{
-                                                    pathname: `/seller/shops/${data['name']}`,
-                                                    state: {shop: data}
-                                                }} >{data['name']}</Link>
+                                                {data['shop_verify'] ?
+                                                    <Link className="text-primary shop-name" to={{
+                                                        pathname: `/seller/shops/${data['name']}`,
+                                                        state: {shop: data}
+                                                    }} >{data['name']}</Link>
+                                                :
+                                                    <Link className="text-primary shop-name" to={{
+                                                        pathname: `/seller/shops/${data['name']}/verify-shop`,
+                                                        state: {shop: data}
+                                                    }} >{data['name']}</Link>
+                                                }
                                             </div>
-                                            <div className="col-3 d-flex justify-content-end">
-                                                <div className="mx-2" title="Edit shop">
-                                                    <Icon.PencilSquare data-bs-toggle="modal" data-bs-target="#exampleModal" color="" size={25} className="coursor-pointer" onClick={(e)=>{this.setState({edit_shop_name: data['name']})}}  />
+                                            {data['shop_verify'] ?
+                                                <div className="col-3 d-flex justify-content-end">
+                                                    <div className="mx-2" title="Edit shop">
+                                                        <Icon.PencilSquare data-bs-toggle="modal" data-bs-target="#exampleModal" color="" size={25} className="coursor-pointer" onClick={(e)=>{this.setState({edit_shop_name: data['name']})}}  />
+                                                    </div>
+                                                    <div className="mx-2" title="Delete Shop" >
+                                                        <Icon.Trash color="red" size={25} className="coursor-pointer" onClick={()=>this.delete_shop(data['name'])}  />
+                                                    </div>
                                                 </div>
-                                                <div className="mx-2" title="Delete Shop" >
-                                                    <Icon.Trash color="red" size={25} className="coursor-pointer" onClick={()=>this.delete_shop(data['name'])}  />
+                                            :
+                                                <div className="col-3 d-flex justify-content-end">
+                                                    <span className='text-danger'>Please Verify shop first</span>       
                                                 </div>
-                                            </div>
+                                            }
                                         </div>
                                     </div>
                                 ))

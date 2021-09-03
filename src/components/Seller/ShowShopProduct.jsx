@@ -57,9 +57,9 @@ export default function ShowShopProduct() {
                 <ProductsFilter filter_func={setfilter} filter_array={brand_filter}  />
             </div>
             <hr className="text-muted" />   
-            <div>
+            <div className="parent">
                 {product.map((data)=>(
-                    <div className="p-3 shadow-sm rounded col-3" key={data['id']}>
+                    <div className="p-3 shadow-sm rounded col-3 product-item" key={data['id']}>
                         <div className="image-show">
                             <img src={getFirstImage(data['product_image'])} alt=""  height="157px" width="73px" className="img" />
                         </div>  

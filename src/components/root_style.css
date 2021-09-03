@@ -1,0 +1,11 @@
+.text-purple{
+    color: #b57af0;
+}
+
+.bg-purple{
+    background-color: #ba86ee;
+	color: white;
+}
+.bg-purple:hover{
+    color: white;
+}

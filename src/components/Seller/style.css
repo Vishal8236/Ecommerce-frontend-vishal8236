@@ -16,3 +16,10 @@
     transition: 0.2s linear;
     /* border: 1px solid rgb(221, 221, 221); */
 }
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+}

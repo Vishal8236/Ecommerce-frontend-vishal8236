@@ -5,6 +5,7 @@ import ShowShopProduct from './ShowShopProduct';
 import NewProduct from './NewProduct';
 import SellerHome from './SellerHome';
 import ProductDescrption from './ProductDescrption';
+import VerifyShop from './VerifyShop';
 
 function SellerRoutes(props) {
     const {path, url} = useRouteMatch()
@@ -18,9 +19,14 @@ function SellerRoutes(props) {
                 <Route path={`${path}/shops`} exact>
                     <SellerDashboard user={props.user} />
                 </Route>
+                
                 <Route path={`${path}/shops/:shop_id`} exact>
                     <ShowShopProduct />
                 </Route>
+                <Route path={`${path}/shops/:shop_id/verify-shop`} exact>
+                    <VerifyShop />
+                </Route>
+
                 <Route path={`${path}/shops/:shop_id/new_product`} exact>
                     <NewProduct />
                 </Route>
