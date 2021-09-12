@@ -31,7 +31,7 @@ function App(props) {
         {user.user ?  <Navigation user={user.user['name']} /> : <Navigation user="user" /> }
         <Switch>
           <Route exact path="/" >
-            <Home />
+            <Dashboard />
           </Route>
           <Route path="/login">
             {localStorage.token ? <Redirect push to="/" />: <Login /> }

@@ -17,7 +17,7 @@ function VerifyShop() {
             let data = JSON.stringify(values,null, 2)
             axios.post(`http://localhost:3000/seller/shop/${shop_id['shop_id']}/verify-shop`,{
                 headers: {"Authenticate" : localStorage.token},
-                data:{product_data: data} 
+                data:{shop_data: data} 
             })
             .then((res)=>{
                 console.log(res);
@@ -30,8 +30,8 @@ function VerifyShop() {
     return (
         <div>
             <div className="container">
-                <div className="shadow-sm px-4 py-4">
-                    <div className="text-purple text-center h3 mt-5">
+                <div className="shadow-sm px-4 py-4  mt-5">
+                    <div className="text-purple text-center h3">
                         Verify the Shop
                     </div>
                     <form onSubmit={formik.handleSubmit}>
@@ -63,6 +63,7 @@ function VerifyShop() {
                                 onChange={formik.handleChange}
                                 value={formik.values.service}
                                 >
+                                <option value="Select service" label="Select service" />
                                 {service_list.map((item, key) =>
                                     <option key={key} value={item} label={item} />
                                 )}

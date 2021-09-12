@@ -2,6 +2,7 @@ import axios from 'axios';
 import {React, useState, useEffect} from 'react'
 import { Link, useLocation, useParams } from "react-router-dom";
 import ProductsFilter from './ProductsFilter';
+import '../Seller/style.css';
 
 export default function ShowShopProduct() {
     //state use by this component

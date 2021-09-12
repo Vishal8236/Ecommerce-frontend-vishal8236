@@ -23,3 +23,6 @@
     grid-column-gap: 10px;
     grid-row-gap: 20px;
 }
+.parent > div{
+    width: 310px;
+}

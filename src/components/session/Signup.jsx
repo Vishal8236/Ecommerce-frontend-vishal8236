@@ -89,7 +89,7 @@ export default class Signup extends Component {
 	check_confirm_password = () =>{
 		if(this.state.password)
 		{
-			if (this.state.password == this.state.c_password) {
+			if (this.state.password === this.state.c_password) {
 				this.setState({form_valid : false})
 			}
 			else{

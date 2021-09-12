@@ -2,6 +2,7 @@ import React from 'react'
 import { GoogleLogout } from 'react-google-login';
 import { Link, Redirect } from 'react-router-dom';
 import './style.css';
+import * as Icon from 'react-bootstrap-icons';
 function Navigation(props) {
 	const onLogout = () =>{
 		localStorage.removeItem("token");
@@ -30,9 +31,10 @@ function Navigation(props) {
 				<div className="d-flex align-items-center">
 					<div className="nav-option">
 						<span>Hello {props.user}!</span>
+						<Icon.CaretDownFill color="white" size={18} className="coursor-pointer mx-1" />
 					</div>
 					<div className="px-4">
-						<Link to="/cart"><i className="fa fa-shopping-cart text-white" style={{fontSize: '35px'}}></i></Link>
+						<Link to="/cart"><Icon.CartPlusFill color="white" size={28} className="" /></Link>
 					</div>
 					<div>
 						{localStorage.token ? 

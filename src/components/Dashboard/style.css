@@ -13,14 +13,14 @@
 	transition-timing-function: linear;
 	box-shadow:5px -0px 20px rgb(197, 196, 193);
 }
-.parent{
+.user-parent{
 	display: grid;
 	grid-template-columns: repeat(6, 0fr);
 	grid-template-rows: repeat(6, 0fr);
-	grid-column-gap: 0px;
-	grid-row-gap: 0px;
+	grid-column-gap: 18px;
+	grid-row-gap: 15px;
 }
-.parent >div{
+.user-parent >div{
 	width: 279px;
 }
 
