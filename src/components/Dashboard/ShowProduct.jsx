@@ -9,26 +9,33 @@ export default class ShowProduct extends Component {
 	{
 		super();
 		this.state= {
-			products: []
+			products: [],
+			isLoading: false
 		}
 	}
 	componentDidMount(){
 		axios.get('http://localhost:3000/user/products')
 		.then(res => {
 			this.setState({
-				products : res.data.products
+				products : res.data.products,
+				isLoading: true
 			})
-			console.log(res.data.products)
+		})  
+		.catch((error) =>{
+			console.log(error)
 		})
 	}
 	render() {
 		return (
 			<div className="px-3 mt-5">
 				<div className="text-primary h3 text-left d-flex">Show all products</div>
+				{!this.state.isLoading &&
+					<span>Loading......</span>
+				}
 				<div className="d-flex mt-3 px-3">
 					<div className="user-parent">
 						{this.state.products.map((data)=>(
-							<div className="py-2 shadow text-center rounded" id={data['id']}> 
+							<div className="py-2 shadow text-center rounded" id={data['id']} key={data['id']}> 
 								<div className="product-like-share row align-items-center">
 									<div className="col-6 ">
 										<Icon.Share color="royalblue" size={25} className="coursor-pointer" />
@@ -53,7 +60,7 @@ export default class ShowProduct extends Component {
 											<button className="btn btn-primary btn-sm">Buy Now</button>
 										</div>
 										<div className="col-6">
-											<button type="button" className="btn btn-warning btn-sm" onClick={()=>StoreProductToCart(data['product_name'], data['price'])} >Add Cart</button>
+											<button type="button" className="btn btn-warning btn-sm" onClick={()=>StoreProductToCart(data['product_name'], data['price'], FetchOnePicture(data['product_image']), data['id'])} >Add Cart</button>
 										</div>
 									</div>
 								</div>

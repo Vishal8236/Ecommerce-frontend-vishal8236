@@ -10,6 +10,8 @@ import Navigation from './components/Navigation/Navigation';
 import Signup from './components/session/Signup';
 import DistDashboard from './components/Distributer/DistDashboard';
 import SellerRoutes from './components/Seller/SellerRoutes';
+import UserRoutes from './components/Dashboard/route/UserRoutes';
+import ShowCartProduct from './components/Dashboard/cart/ShowCartProduct';
 
 function App(props) {
   const [user, setuser] = useState([])
@@ -20,6 +22,7 @@ function App(props) {
 				headers: {"Authenticate" : localStorage.token}
 			})
 			.then(res => {
+        console.log(res.data)
 				setuser(res.data)
 			})
 		}	
@@ -48,6 +51,9 @@ function App(props) {
           
           <Route path="/dist_dashboard">
             <DistDashboard />
+          </Route>
+          <Route path="/cart">
+            <ShowCartProduct />
           </Route>
         </Switch>
       </Router>

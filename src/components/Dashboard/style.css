@@ -7,12 +7,12 @@
 	justify-content: space-around;
 }
 
-.brand-option:hover{
+/* .brand-option:hover{
 	transform: scale(1.1);
 	transition: 0.5s;
 	transition-timing-function: linear;
 	box-shadow:5px -0px 20px rgb(197, 196, 193);
-}
+} */
 .user-parent{
 	display: grid;
 	grid-template-columns: repeat(6, 0fr);
