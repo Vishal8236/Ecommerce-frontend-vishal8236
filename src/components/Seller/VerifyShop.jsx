@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 function VerifyShop() {
     const shop_id = useParams()
     console.log(shop_id['shop_id'])
-    const [service_list, setservice_list] = useState(['mobile','plywood','toy','elctric','leptop'])
+    const [service_list, setservice_list] = useState(['mobile','plywood','toy','electric','leptop','headphone'])
     const formik = useFormik({
         initialValues : {
             phone: '',
@@ -68,7 +68,6 @@ function VerifyShop() {
                                     <option key={key} value={item} label={item} />
                                 )}
                             </select>
-                            <div id="serviceHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div>
                             <button type="submit" className="btn bg-purple">Submit</button>

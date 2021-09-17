@@ -26,3 +26,11 @@
 .parent > div{
     width: 310px;
 }
+.image-show{
+    height: 190px;
+    width: 100%;
+}
+.image-show > img{
+    height: 100%;
+    width: 100%;
+}

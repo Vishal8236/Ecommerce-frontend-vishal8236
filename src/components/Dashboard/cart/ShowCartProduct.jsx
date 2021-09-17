@@ -2,21 +2,26 @@ import React, { Component } from 'react'
 import { FetchOnePicture } from '../../SharedHooks/FetchOnePicture'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import Banner from '../../Shared_component/Banner';
 
 export default class ShowCartProduct extends Component {
     constructor(){
         super();
         this.state = {
             cartProducts: [],
-            price: 0
+            price: 0,
+            cart_products_id: [],
+            msg: ''
         }
         this.TotalPriceCount = this.TotalPriceCount.bind(this);
+        this.RemoveItem = this.RemoveItem.bind(this);
     }
     componentDidMount(){
         axios.get("http://localhost:3000/user/carts")
         .then((res) => {
             this.setState({
-                cartProducts: res.data.products
+                cartProducts: res.data.products,
+                cart_products_id: res.data.cart_product_id
             })
         })
         .catch((err) => console.log(err))
@@ -45,9 +50,31 @@ export default class ShowCartProduct extends Component {
             return TotalPrice;
         }
     }
+    RemoveItem = (itemId) =>{
+        console.log(itemId['id'])
+        let cart_product_id = itemId['id'];
+        axios.delete(`http://localhost:3000/user/carts/${cart_product_id}`)
+        .then((res) => {
+            this.setState({
+                cartProducts: res.data.products,
+                cart_products_id: res.data.cart_product_id,
+                msg: res.data.msg
+            })
+        })
+        .catch((err) => console.log(err))
+        .finally(()=>{
+            let calculate_price = this.TotalPriceCount();
+            this.setState({
+                price : calculate_price
+            })
+        })
+    }
     render() {
         return (
             <div className="">
+                {this.state.msg &&
+                    <Banner color="success" msg={this.state.msg} />
+                }
                 <div className="container mt-5">
                     <div className="text-primary h3 text-center">Show cart products</div> 
                     { this.state.cartProducts.map((item, index) => (
@@ -74,7 +101,7 @@ export default class ShowCartProduct extends Component {
                                     <button className="w-100 btn btn-warning">Buy Now</button>
                                 </div>
                                 <div className="my-3">
-                                    <button className="w-100 btn btn-danger">Remove Item</button>
+                                    <button type="button" onClick={()=>this.RemoveItem(this.state.cart_products_id[index])} className="w-100 btn btn-danger">Remove Item</button>
                                 </div>
                             </div>
                         </div>

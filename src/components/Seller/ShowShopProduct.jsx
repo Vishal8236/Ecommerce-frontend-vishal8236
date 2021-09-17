@@ -62,7 +62,7 @@ export default function ShowShopProduct() {
                 {product.map((data)=>(
                     <div className="p-3 shadow-sm rounded col-3 product-item" key={data['id']}>
                         <div className="image-show">
-                            <img src={getFirstImage(data['product_image'])} alt=""  height="157px" width="73px" className="img" />
+                            <img src={getFirstImage(data['product_image'])} alt="" className="" />
                         </div>  
                         <div className="text-success mt-3">
                             <span className="h5">{data['product_name']}</span>
