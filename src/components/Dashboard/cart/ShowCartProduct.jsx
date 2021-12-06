@@ -106,12 +106,23 @@ export default class ShowCartProduct extends Component {
                             </div>
                         </div>
                     ))}
-                    <div className="shadow rounded py-3 my-5 row text-center">
-                        <div className="col-sm-6">
-                            <span className="h5 text-success">Total Price - </span>
-                        </div>
-                        <div className="col-sm-6">
-                            <span>${this.state.price}</span>
+                    <div className="d-flex flex-row-reverse my-5 ">
+                        {/* <div className="col-sm-6">
+                        </div> */}
+                        <div className="shadow rounded py-3 col-sm-6 border-bottom border-2">
+                            <div className="d-flex justify-content-around">
+                                <span className="h5 text-success">Total Price </span>
+                                <span>${this.state.price}</span>
+                            </div>
+                            <div className="mt-3 text-center">
+                                <Link 
+                                    className="w-75 btn btn-warning"
+                                    to={{
+                                        pathname:'/pay',
+                                        state: {products : this.state.cartProducts, total_price : this.state.price}
+                                    }}
+                                >Buy All Items</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

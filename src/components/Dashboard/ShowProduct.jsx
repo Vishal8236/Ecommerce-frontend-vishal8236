@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import * as Icon from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 import { FetchOnePicture } from '../SharedHooks/FetchOnePicture';
 import { StoreProductToCart } from '../SharedHooks/StoreProductToCart';
 
@@ -57,7 +58,15 @@ export default class ShowProduct extends Component {
 									<hr />
 									<div className="buy-add row text-center d-flex">
 										<div className="col-6">
-											<button className="btn btn-primary btn-sm">Buy Now</button>
+											<Link 
+												className="btn btn-primary btn-sm" 
+												to={{
+													pathname:'\pay',
+													state: {products : data['id'], total_price: data['price']}
+												}}
+											>
+												Buy Now
+											</Link>
 										</div>
 										<div className="col-6">
 											<button type="button" className="btn btn-warning btn-sm" onClick={()=>StoreProductToCart(data['product_name'], data['price'], FetchOnePicture(data['product_image']), data['id'])} >Add Cart</button>

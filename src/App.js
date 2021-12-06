@@ -12,6 +12,7 @@ import DistDashboard from './components/Distributer/DistDashboard';
 import SellerRoutes from './components/Seller/SellerRoutes';
 import UserRoutes from './components/Dashboard/route/UserRoutes';
 import ShowCartProduct from './components/Dashboard/cart/ShowCartProduct';
+import PaymentPage from './components/Dashboard/PaymentPage';
 
 function App(props) {
   const [user, setuser] = useState([])
@@ -54,6 +55,9 @@ function App(props) {
           </Route>
           <Route path="/cart">
             <ShowCartProduct />
+          </Route>
+          <Route path="/pay">
+            <PaymentPage />
           </Route>
         </Switch>
       </Router>
